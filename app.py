@@ -3,10 +3,16 @@ import requests
 from PIL import Image
 from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
+from pathlib import Path
 
 st.set_page_config(layout='wide')
 
-
+CURR_DIR= Path(__file__).parent if "__file" in locals() else Path.cwd()
+profile_pic_path= CURR_DIR/"videos"/"profile_pic.png"
+car_pic_path= CURR_DIR/"videos"/"demo.png"
+iris_pic_path= CURR_DIR/"videos"/"iris.png"
+password_pic_path= CURR_DIR/"videos"/"Interface.PNG"
+game_pic_path= CURR_DIR/"videos"/"my project.jpg"
 @st.cache_resource
 def load_education(url):
     r = requests.get(url)
@@ -120,7 +126,7 @@ if selected == 'About':
 
 
         with col4:
-            load_profile_pic("videos\profile_pic.png")
+            load_profile_pic(profile_pic_path)
 
     st.write('---')
 
@@ -186,14 +192,14 @@ if selected=='Projects':
         st.markdown("- [Click me to see the github repository ](https://github.com/Soyal10/Streamlit-app)")
 
     with left_col1:
-        load_car_price_pic("videos\demo.png")
+        load_car_price_pic(car_pic_path)
 
     st.write('##')
     st.subheader("Iris Flower Classification ML model")
     st.write('##')
     right_col,left_col= st.columns((1,2))
     with right_col:
-        load_iris_pic("videos\iris.png")
+        load_iris_pic(iris_pic_path)
     with left_col:
         st.markdown("- The iris data set is widely used as a beginner's dataset for machine learning purposes. The dataset is included in R base and Python in the machine learning library scikit-learn, so that users can access it without having to find a source for it. ")
         st.markdown("- The algorithm used in this model is SVM. In machine learning, support vector machines (SVMs, also support vector networks[1]) are supervised learning models with associated learning algorithms that analyze data for classification and regression analysis." )
@@ -204,7 +210,7 @@ if selected=='Projects':
     st.write('##')
     right_col2,left_col2=st.columns((2,1))
     with left_col2:
-        load_passwordManager_pic("videos\Interface.PNG")
+        load_passwordManager_pic(password_pic_path)
 
     with right_col2:
         st.markdown("- The password manager with JSON file storage and master key access ensures that users' login credentials are kept secure through encryption and a hashed master key. This combination of features helps users safely manage their passwords, protecting them from unauthorized access.")
@@ -217,7 +223,7 @@ if selected=='Projects':
     st.subheader("Name the states game")
     right_col3,left_col3= st.columns((1,2))
     with right_col3:
-        load_game_pic("videos\my project.jpg")
+        load_game_pic(game_pic_path)
 
     with left_col3:
         st.markdown("-  This Python project utilizes the Pandas library for data handling, Tkinter for the GUI, and a geographical dataset to create an educational and interactive game. Players are tasked with identifying and naming the states of a country, with their score increasing as they correctly name each state. It's a fun way to learn geography while enjoying a gaming experience.")
